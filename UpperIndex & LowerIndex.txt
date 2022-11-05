@@ -1,0 +1,50 @@
+int findLowerValue(int lo , int hi ,vector<int>& nums , int toFind ){
+        
+       // int upperValue = findUpperIndex(lo,hi, nums, toFind);
+        //cout<<lo << " "<<hi << " <-i val -> "<<upperValue << endl ;
+        
+        
+        while(lo < hi){
+        
+            int mid = lo + (hi - lo)/2 ; //lower bound;
+            
+            if(toFind > nums[mid]){
+                lo = mid +1;
+            }
+            else {
+                hi = mid;
+            }
+        }
+        
+        int lowerValue = nums [lo];
+        
+        //cout<<lowerValue<<endl;
+        
+       // if( getAbsDistance(upperValue , toFind)  < getAbsDistance (toFind , lowerValue)  ){
+           // return lowerValue;
+       // }
+       // else {
+       //     return upperValue ;
+       // }
+        
+        return nums[lo];
+        
+    }
+    
+    int findUpperValue(int lo , int hi ,vector<int>& nums , int toFind ){
+        
+        
+         while(lo < hi){
+            int mid = lo + (hi - lo + 1)/2 ; //upper bound;
+            
+            if(toFind < nums[mid]){
+                hi = mid - 1;
+            }
+            else {
+                lo = mid;
+            }
+        }
+        
+        return nums[lo];
+        
+    }

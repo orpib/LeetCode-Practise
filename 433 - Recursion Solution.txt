@@ -1,0 +1,49 @@
+class Solution {
+public:
+    int minMutation(string start, string end, vector<string>& bank) {
+     
+        if(bank.size() == 0 && diff(start, end) != 0 ){
+            return -1;
+        }
+            
+        if(diff(start, end) == 0 ){
+            return 0;
+        }
+
+        
+        int res = INT_MAX;
+        
+        for(int i = 0;i<bank.size();i++){
+            
+            if(diff(start,bank[i]) == 1) {
+                
+                vector<string> newBank;
+                
+                for(int j= 0;j< bank.size();j++){
+                    if(j!= i) newBank.push_back(bank[j]);
+                }
+                
+                int newRes = minMutation(bank[i],end, newBank) ;
+                if(newRes != -1 ){
+                    newRes ++;
+                    res = min(res, newRes );
+                } 
+            }
+        }
+        
+        if(res == INT_MAX) return -1;
+        return res;
+    }
+    
+    
+    int diff(string start , string end){
+        int difCount =0;
+        for(int i= 0; i< start.length(); i++){
+            if(start[i] != end[i]){
+                difCount ++;
+            }
+        }
+        
+        return difCount;
+    }
+};

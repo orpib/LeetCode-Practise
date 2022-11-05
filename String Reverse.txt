@@ -1,0 +1,67 @@
+class Solution {
+public:
+    int concatenatedBinary(int n) {
+        
+        long long mxSize = 1700000;
+        long long mod = 1000000000+7;
+        
+        long long ar[1700002]={0};
+        ar[0]=1;
+        for(int i=1;i<=mxSize;i++){
+            ar[i] = ( ar[i-1] % mod * 2 % mod ) % mod;
+        }
+        
+        //cout<<ar[mxSize]<<endl;
+        
+        
+        
+        string s = ""; 
+        
+        for(int i = 1;i<=n;i++){
+            s += binConvert(i);
+        }
+        //cout<<s<<" "<<s.size()<<endl;
+        
+        long long ans = 0;
+        int limit = s.size()-1;
+       for(int i= limit ; i>=0 ; i--){
+           
+           ans = ( ans % mod + (ar[limit-i])% mod * ( s[i] - 48) %mod ) % mod;
+
+       }
+        
+        return ans;
+        
+    }
+    
+
+    
+    string binConvert(int n){
+        string s ="";
+
+        while(n != 0){
+            
+            char x = (n%2) + '0';
+            //cout<<x;
+            s+= x;
+            n /= 2;
+        }
+        //cout<<endl<< s<<endl;
+        
+        reverseStr(s);
+        //cout<<s<<endl;
+        return s;
+        
+        
+    }
+    
+    void reverseStr(string& str)
+        {
+            int n = str.length();
+
+            // Swap character starting from two
+            // corners
+            for (int i = 0; i < n / 2; i++)
+                swap(str[i], str[n - i - 1]);
+        }
+};
