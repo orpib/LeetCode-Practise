@@ -1,0 +1,18 @@
+class ComparatorQ {
+    
+    public :
+    bool operator()(char const& a, char const& b)
+    {
+        // return "true" if "p1" is ordered
+        // before "p2", for example:
+        return (a - 'a') > (b - 'a');
+    }
+    
+};
+
+class Solution {
+public:
+    string orderlyQueue(string s, int k) {
+        priority_queue<char, vector<char>,  ComparatorQ> queue;
+}
+};

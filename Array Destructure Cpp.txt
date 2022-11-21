@@ -1,0 +1,5 @@
+  queue<array<int, 3>> queue;
+        queue.push({startRow, startCol, 0});
+        
+            auto [currRow, currCol, currDistance] = queue.front();
+            queue.pop();

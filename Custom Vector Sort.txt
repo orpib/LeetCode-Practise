@@ -1,0 +1,11 @@
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+vector< MyStruct > values;
+
+sort( values.begin( ), values.end( ), [ ]( const auto& lhs, const auto& rhs )
+{
+   return lhs.key < rhs.key;
+});
