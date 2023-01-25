@@ -1,0 +1,3 @@
+for (auto& x: mymap) {
+            std::cout << x.first << " => " << x.second << '\n';
+    }  
