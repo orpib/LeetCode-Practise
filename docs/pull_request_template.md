@@ -35,5 +35,5 @@ What kind of change does this PR introduce?
 ## Other information
 
 ### Mentions
-You are welcome to contribute to this doc for applying the best practices.  :smile:
+
 
