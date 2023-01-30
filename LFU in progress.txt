@@ -1,0 +1,150 @@
+class LFUCache {
+    private:
+    map<int, int> hashTable , counterMap;
+    int cap , counter, cutoff;
+public:
+    LFUCache(int capacity) {
+        cap = capacity;
+        counter =  1;
+        cutoff = -1;
+    }
+    
+    int get(int key) {
+
+        if(hashTable.find(key) != hashTable.end()) {
+            int val = hashTable[key];
+            hashTable.erase(key);
+            hashTable[key] = val;
+        };
+        //counterMap[key] = counter++;
+     return 1;   
+    }
+    
+    void put(int key, int value) {
+        if(hashTable.find(key) != hashTable.end()){
+            hashTable.erase(key);
+            hashTable[key]= value;
+        }
+        else{
+            //if(hashTable.size() > cap){
+            //auto itr = hashTable.begin();
+            //cout<<itr->first<<" Val"<<endl;
+          ///  hashTable.erase(itr->first);            
+        //}
+
+            hashTable[key] = value;
+        }
+        
+
+        for(auto & mp : hashTable){
+            
+            cout<<mp.first<<" "<<mp.second<<endl;
+        }
+
+        cout<< " Test"<<endl;
+        
+    }
+};
+
+/**
+ * Your LFUCache object will be instantiated and called as such:
+ * LFUCache* obj = new LFUCache(capacity);
+ * int param_1 = obj->get(key);
+ * obj->put(key,value);
+ */
+
+
+
+
+
+
+class LFUCache {
+    private:
+    map<int, int> hashTable , nextVal , prevVal;
+    int cap , counter, curr ,lru;
+public:
+    LFUCache(int capacity) {
+        cap = capacity;
+        //counter =  1;
+        curr = -1;
+    }
+    
+    int get(int key) {
+
+        if(hashTable.find(key) != hashTable.end()) {
+            hashTable[key] = val;
+        };
+        return 1;   
+    }
+    
+    void put(int key, int value) {
+        // if(hashTable.find(key) != hashTable.end()){
+        //     hashTable.erase(key);
+        //     hashTable[key]= value;
+        // }
+        // else{
+        //     //if(hashTable.size() > cap){
+        //     //auto itr = hashTable.begin();
+        //     //cout<<itr->first<<" Val"<<endl;
+        //   ///  hashTable.erase(itr->first);            
+        // //}
+
+            
+        // }
+
+        
+        if(counter == 0) {
+            lru = key;
+        }
+        if(hashTable.find(key) == hashTable.end()){
+            counter++;
+        }
+
+        hashTable[key] = value;
+
+        if(counter > cap){
+            if(lru != -1){
+                hashTable.erase(lru);
+                int temp = lru;
+                if( next[lru] != -1 ){
+                     temp  = next[lru];
+                     prev[ next[lru] ]  = prev[lru];  
+                }
+                 prev[lru] = -1;
+                 next[lru] = -1;
+                 lru = temp;
+                 counter--;
+            }
+        }
+
+        if( nextVal.find(key) != nextVal.end() && next[key] != -1){
+                prev[next[key]] = prev[key];
+            }
+
+            if(curr == -1){
+                prev[key] = -1;
+            }
+            else {
+                    prev[key]= (curr == key) ? prev[curr] : curr;
+                    next[curr] = (curr == key) ? -1 : key  ;
+            }
+
+            if(prev[key] == -1){
+                lru = key;
+            }
+            else if(prev[next[key]] == -1){
+                lru= next[key];
+            }
+
+        }
+
+        
+    }
+};
+
+/**
+ * Your LFUCache object will be instantiated and called as such:
+ * LFUCache* obj = new LFUCache(capacity);
+ * int param_1 = obj->get(key);
+ * obj->put(key,value);
+ */
