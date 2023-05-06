@@ -1,0 +1,24 @@
+while(!q.empty()){
+
+            int sz = q.size();
+            int len = ans.size();
+            ans.push_back({});
+
+            while(sz--){
+                TreeNode * curr = q.front();
+                q.pop();
+                if(curr == NULL) continue;
+
+                ans[len].push_back(curr->val);
+
+                q.push(curr->left);
+                q.push(curr-> right);
+            }
+
+            if(!isLeft){
+                reverse(ans[len].begin(),ans[len].end());
+            }
+
+            isLeft = !isLeft;
+
+        }

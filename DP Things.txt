@@ -1,0 +1,15 @@
+Top-Down (Memoization):
+In the top-down approach, the problem is divided into smaller subproblems, and the solutions to these subproblems are stored in a memoization table (e.g., a dictionary or an array) to avoid redundant computations. The memoization table is initially empty, and as the algorithm progresses, the solutions to subproblems are computed and stored in the memoization table. When a subproblem is encountered again, its solution is retrieved from the memoization table instead of recomputing it, which helps in avoiding duplicate calculations and improves the overall efficiency of the algorithm. The top-down approach is typically implemented using recursion, where the function calls itself with different arguments for solving subproblems.
+
+Bottom-Up (Tabulation):
+In the bottom-up approach, the problem is solved in a systematic manner starting from the smallest subproblems and building up to the original problem. The solutions to subproblems are stored in a tabulation table (e.g., an array or a matrix) in a bottom-up manner, where the table is filled iteratively from the smallest subproblems to the original problem. The bottom-up approach avoids the overhead of function call stack, which can be associated with the top-down approach, and can be more efficient in terms of space and time complexity. The bottom-up approach is typically implemented using loops, and the order of computation is determined by the dependencies among the subproblems.
+
+In bottom-up DP we will write an iterative solution to compute the value of every state. We will start from the smallest subproblems and iteratively increase the size and compute the new solutions from the ones we already know. This means that we will have to redefine the subproblems. Then we will need to find how the solution of the problem changes when a new object becomes available.
+
+
+
+
+However, the top-down approach starts with the original problem and breaks it down into smaller subproblems, while the bottom-up approach starts with the smallest subproblems and builds up to the original problem.
+
+
+

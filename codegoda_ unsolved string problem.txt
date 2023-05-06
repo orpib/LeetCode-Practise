@@ -1,0 +1,113 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+#define pii pair<int,int>
+
+bool stringContains( int pos,vector<int>& strMapper, vector<vector<pii>> & mapper){
+    bool isContains = true;
+    for(auto val : mapper[pos]){
+        int letterIndex = val.first;
+        int letterNumber = val.second;
+
+        isContains &=  (strMapper[letterIndex] >= letterIndex);
+    }
+
+
+    if(!isContains) return false;
+
+    for(auto val : mapper[pos]){
+        int letterIndex = val.first;
+        int letterNumber = val.second;
+        strMapper[letterIndex] -= letterNumber;
+    }
+
+    return isContains;
+
+}
+
+void processString(string scr , vector<vector<pii>> & mapper){
+    vector<int> strMapper(26,0);
+    for(int i=0;i<scr.size();i++){
+        strMapper[ scr[i]-'a' ] ++;
+    }
+    vector<int> ansVec;
+
+    for(int i = 0 ; i<10;i++){
+        // need while here.
+        while( stringContains(i , strMapper, mapper)){
+            ansVec.push_back(i);
+        }
+    }
+    
+    return;
+}
+
+bool stringContains( int pos,vector<int>& strMapper, vector<vector<pii>> & mapper){
+    bool isContains = true;
+    for(auto val : mapper[pos]){
+        int letterIndex = val.first;
+        int letterNumber = val.second;
+
+        isContains &=  (strMapper[letterIndex] >= letterIndex);
+    }
+
+
+    if(!isContains) return false;
+
+    for(auto val : mapper[pos]){
+        int letterIndex = val.first;
+        int letterNumber = val.second;
+        strMapper[letterIndex] -= letterNumber;
+    }
+
+    return isContains;
+
+}
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    vector<string> numbers {"zero","one","two","three","four","five","six","seven","eight","nine"};
+    vector<vector<pii>> mapper(10 );
+    for(int i=0;i<10;i++){
+        vector<int> temp(26,0);
+        for(int j=0; j<numbers[i].size();j++){
+            int pos = numbers[i][j] - 'a';
+            temp[pos]++;
+        }
+
+        for(int k = 0; k<26;k++){
+            if(temp[k] <= 0) continue;
+
+            mapper[i].push_back({k,temp[k]}); // letter position , positional value.
+        }
+    }
+
+    // for(int i=0;i<10;i++){
+    //     // for(int j=0;j<mapper[i].size();j++){
+    //     //     cout<<mapper[i]
+    //     // }
+    //     for(auto val : mapper[i]){
+    //         cout<<val.first<<","<<val.second<<" ___ ";
+    //     }
+    //     cout<<endl;
+    // }
+    int testCase;
+    cin>>testCase;
+
+    while(testCase--){
+        string scrString;
+        cin>>scrString;
+
+        processString(scrString,mapper);
+        cout<<"11"<<endl;
+    }
+
+
+
+
+
+    return 0;
+}

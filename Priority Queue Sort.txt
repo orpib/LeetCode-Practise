@@ -1,0 +1,22 @@
+class CompareList {
+public:
+    bool operator()(const ListNode* below, const ListNode* above)
+    {
+
+        return below->val > above->val ;
+
+    }
+};
+
+struct ListNodeComparator {
+    bool operator()(const ListNode* a, const ListNode* b) const {
+        return a->val > b->val;
+    }
+};
+
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        
+        priority_queue<ListNode*  , vector<ListNode*> , ListNodeComparator> listPQ;
+
